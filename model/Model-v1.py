@@ -3,13 +3,12 @@ import numpy as np
 import os
 import time
 from sklearn.model_selection import train_test_split
-from keras.layers import Dropout, MaxPooling2D, Reshape, multiply, Conv2D, GlobalAveragePooling2D, Dense, GlobalAveragePooling1D, Multiply
+from keras.layers import Dropout, MaxPooling2D, Reshape, multiply, Conv2D, GlobalAveragePooling2D, Dense, Multiply
 from keras.models  import  Model, load_model
 from tensorflow.keras.layers import Input
 from keras.regularizers import l2
-from keras.callbacks import ModelCheckpoint, LearningRateScheduler, EarlyStopping, ReduceLROnPlateau
+from keras.callbacks import ModelCheckpoint, LearningRateScheduler
 import matplotlib.pyplot as plt
-import biosppy.signals.tools as st
 from sklearn.model_selection import train_test_split
 
 def plot(history):
@@ -30,20 +29,13 @@ def plot(history):
     
 
 fs = 100
-#19634 2203
-#14025 1569
 def load_data(path):
     # No processing
-    # x_train = np.load(path +'x_tr.npy',allow_pickle=True)
-    # Y_train = np.load(path + 'y_tr.npy',allow_pickle=True)
-    # x_test = np.load(path + 'x_te.npy',allow_pickle=True)
-    # Y_test = np.load(path + 'y_te.npy',allow_pickle=True)
+    x_train = np.load(path +'x_tr.npy',allow_pickle=True)
+    Y_train = np.load(path + 'y_tr.npy',allow_pickle=True)
+    x_test = np.load(path + 'x_te.npy',allow_pickle=True)
+    Y_test = np.load(path + 'y_te.npy',allow_pickle=True)
     
-    # Processing
-    x_train = np.load(path +'process/X_train.npy',allow_pickle=True)
-    Y_train = np.load(path + 'process/y_train.npy',allow_pickle=True)
-    x_test = np.load(path + 'process/X_test.npy',allow_pickle=True)
-    Y_test = np.load(path + 'process/y_test.npy',allow_pickle=True)
     x_train = x_train.transpose(0, 2, 1)  # transpose working correctly
     x_test = x_test.transpose(0, 2, 1)
     x_train = x_train.reshape(x_train.shape[0], 12, 1000, 1)  # Add another channel
@@ -77,7 +69,7 @@ def load_data(path):
     return x_train, x_val, x_test, y_train, y_val, y_test
 
 def lr_schedule(epoch, lr):
-    if epoch > 70 and (epoch - 1) % 10 == 0:
+    if epoch > 30 and (epoch - 1) % 10 == 0:
         lr *= 0.1
     print("Learning rate: ", lr)
     return lr
@@ -93,11 +85,8 @@ def create_model(input_shape, weight=1e-3):
     x1 = Conv2D(32, kernel_size=11, strides=1, padding="same", activation="relu", kernel_initializer="he_normal",
                 kernel_regularizer=l2(1e-3), bias_regularizer=l2(weight))(x1)
     x1 = MaxPooling2D(pool_size=5, padding="same")(x1)
-    #print(x1.shape)
 
     # Channel-wise attention module
-    # concat = keras.layers.concatenate([x1, x2, x3], name="Concat_Layer", axis=-1)
-    
     squeeze = GlobalAveragePooling2D()(x1)
     excitation = Dense(16, activation='relu')(squeeze)
     excitation = Dense(32, activation='sigmoid')(excitation)
@@ -114,18 +103,18 @@ if __name__ == "__main__":
     path = '/scratch/xc2627/DS/1.0.1/'
     x_train, x_val, x_test, y_train, y_val, y_test= load_data(path)
     # training
-    # model = create_model(x_train.shape[1:])
-    # model.summary()
-    # model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model = create_model(x_train.shape[1:])
+    model.summary()
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     filepath = 'weights.best.hdf5'
-    # checkpoint = ModelCheckpoint(filepath, monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
-    # lr_scheduler = LearningRateScheduler(lr_schedule)
-    # callbacks_list = [lr_scheduler, checkpoint]
-    # start_time = time.time()
-    # history = model.fit(x_train, y_train, batch_size=128, epochs=100,
-    #                      validation_data=(x_val, y_val), callbacks=callbacks_list)
+    checkpoint = ModelCheckpoint(filepath, monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
+    lr_scheduler = LearningRateScheduler(lr_schedule)
+    callbacks_list = [lr_scheduler, checkpoint]
+    start_time = time.time()
+    history = model.fit(x_train, y_train, batch_size=128, epochs=100,
+                         validation_data=(x_val, y_val), callbacks=callbacks_list)
     
-    # plot(history.history)
+    plot(history.history)
     model = load_model(filepath)
    
     
@@ -148,14 +137,14 @@ if __name__ == "__main__":
         print('AUPRC           : {:.2f}'.format((auc_sum / 5) * 100))
         print("Micro F1 score  : {:.2f}".format(f1_score(y_true, y_bin, average='micro') * 100))
     
-    start_time = time.time()
+#     start_time = time.time()
     y_pred_train = model.predict(x_train)
     y_pred_test  = model.predict(x_test)
-    end_time = time.time()
+#     end_time = time.time()
     
-    print('time cost:%d s'%(end_time-start_time))
+#     print('time cost:%d s'%(end_time-start_time))
 
-    # print("Train")
-    # sklearn_metrics(y_train, y_pred_train)
-    # print("\nTest")
-    # sklearn_metrics(y_test, y_pred_test)
+    print("Train")
+    sklearn_metrics(y_train, y_pred_train)
+    print("\nTest")
+    sklearn_metrics(y_test, y_pred_test)
