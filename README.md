@@ -6,9 +6,9 @@ Sleep apnea (SA) is a common sleep disorder that occurs during sleep, leading to
  -->
 
 ## Requirements
-Python==3.6
-Keras==2.3.1
-TensorFlow==1.14.0
+- Python==3.6
+- Keras==2.3.1
+- TensorFlow==1.14.0
 
 To install the dependencies, you can run
 ```
