@@ -5,7 +5,6 @@ Sleep apnea (SA) is a common sleep disorder that occurs during sleep, leading to
 ![img](https://github.com/Bettycxh/SE-MSCNN-A-Lightweight-Multi-scaled-Fusion-Network-for-Sleep-Apnea-Detection-Using-Single-Lead-ECG-/blob/main/pic/model.png)
  -->
 
-# Getting Started:
 ## Requirements
 Python==3.6
 Keras==2.3.1
