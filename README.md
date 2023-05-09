@@ -12,7 +12,7 @@ Sleep apnea (SA) is a common sleep disorder that occurs during sleep, leading to
 
 To install the dependencies, you can run
 ```
-pip install requirement.txt
+pip install -r requirements.txt
 ```
 
 ## Data Preparation
