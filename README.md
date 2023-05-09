@@ -10,11 +10,6 @@ Sleep apnea (SA) is a common sleep disorder that occurs during sleep, leading to
 - Keras==2.3.1
 - TensorFlow==1.14.0
 
-To install the dependencies, you can run
-```
-pip install -r requirements.txt
-```
-
 ## Data Preparation
 To download the dataset used for training and testing, please refer to [PTB-XL, a large publicly available electrocardiography dataset](https://physionet.org/content/ptb-xl/1.0.1/)
 
