@@ -180,7 +180,7 @@ def run_cv(x_train, x_test, y_train, y_test ,nsamples=100):
     histories = {x: '' for x in range(1,N_FOLDS)}
     models = {x: '' for x in range(1,N_FOLDS)}
     results = {x: '' for x in range(1,N_FOLDS)}
-    Y = pd.read_csv('/scratch/xc2627/DS/1.0.1/ptbxl_database.csv', index_col='ecg_id')
+    Y = pd.read_csv('./1.0.1/ptbxl_database.csv', index_col='ecg_id')
     Y.drop(Y[Y.strat_fold ==10].index,inplace=True)
     res = [0, 0,  0,  0,  0]
     for foldno in range(1,10):
@@ -226,6 +226,6 @@ def run_cv(x_train, x_test, y_train, y_test ,nsamples=100):
 
 if __name__ == "__main__":
     # load_data
-    path = './1.0.1/'
+    path = './1.0.1/' # Path to dataset
     x_train, x_test, y_train, y_test= load_data(path)
     res, histories = run_cv(x_train, x_test, y_train,  y_test,nsamples=int(0.5*len(x_train)))
