@@ -19,7 +19,12 @@ To download the dataset used for training and testing, please refer to [PTB-XL, 
 ## Usage
 To train the model, execute the python file
 
-- Run [train.py]
+- Five classes detection
+  Run [train_5.py]
+<!--(https://github.com/Bettycxh/) -->
+
+- Two classes detection
+  Run [train_2.py]
 <!--(https://github.com/Bettycxh/) -->
 
 ## Email
