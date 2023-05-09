@@ -226,6 +226,6 @@ def run_cv(x_train, x_test, y_train, y_test ,nsamples=100):
 
 if __name__ == "__main__":
     # load_data
-    path = '/scratch/xc2627/DS/1.0.1/'
+    path = './1.0.1/'
     x_train, x_test, y_train, y_test= load_data(path)
     res, histories = run_cv(x_train, x_test, y_train,  y_test,nsamples=int(0.5*len(x_train)))
