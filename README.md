@@ -13,8 +13,8 @@ Sleep apnea (SA) is a common sleep disorder that occurs during sleep, leading to
 ## Data Preparation
 To download the dataset used for training and testing, please refer to [PTB-XL, a large publicly available electrocardiography dataset](https://physionet.org/content/ptb-xl/1.0.1/)
 
-- Download the ZIP file
-- Run example_physionet.py to get the data
+- Download the [ZIP file](https://physionet.org/static/published-projects/ptb-xl/ptb-xl-a-large-publicly-available-electrocardiography-dataset-1.0.1.zip)
+- Run [example_physionet.py](https://physionet.org/content/ptb-xl/1.0.1/example_physionet.py) to get the data
 
 ## Usage
 To train the model, execute the python file
