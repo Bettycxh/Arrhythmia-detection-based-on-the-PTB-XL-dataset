@@ -3,7 +3,7 @@
 
 ## Abstract
 
-![img](https://github.com/Bettycxh/SE-MSCNN-A-Lightweight-Multi-scaled-Fusion-Network-for-Sleep-Apnea-Detection-Using-Single-Lead-ECG-/blob/main/pic/model.png)
+<!-- ![img](https://github.com/Bettycxh/SE-MSCNN-A-Lightweight-Multi-scaled-Fusion-Network-for-Sleep-Apnea-Detection-Using-Single-Lead-ECG-/blob/main/pic/model.png) -->
 
 
 ## Requirements
@@ -21,10 +21,10 @@ To download the dataset used for training and testing, please refer to [PTB-XL, 
 To train the model, execute the python file
 
 - Five classes detection (Normal, MI, STTC, CD, HYP)
-  Run [train_5.py](https://github.com/Bettycxh/DS4Healthcare-Group-4/train_5.py)
+  Run [train_5.py](https://github.com/Bettycxh/DS4Healthcare-Group-4/blob/main/train_5.py)
 
 - Two classes detection (Normal, Arrhythmia)
-  Run [train_2.py](https://github.com/Bettycxh/DS4Healthcare-Group-4/train_2.py)
+  Run [train_2.py](https://github.com/Bettycxh/DS4Healthcare-Group-4/blob/main/train_2.py)
 
 ## Email
 If you have any questions, please email to: [xhchen@nyu.edu](mailto:xhchen@nyu.edu)
