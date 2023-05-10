@@ -4,7 +4,7 @@
 ## Abstract
 Arrhythmia detection is crucial for early diagnosis and treatment of various heart diseases. This paper proposes a CNN with an attention wise mechanism to classify two-class and five-class arrhythmia using PTB-XL dataset. Upsampling is used to handle imbalanced features, and cross-validation is employed for evaluation. The model achieves 84.0% and 88.8% accuracy for two-class and five-class arrhythmia detection, respectively, and is compared to four other academic papers. These results demonstrate the effectiveness of the proposed approach for arrhythmia identification.
 
-<!-- ![img](https://github.com/Bettycxh/DS4Healthcare-Group-4/blob/main/architecture.png) -->
+![img](https://github.com/Bettycxh/DS4Healthcare-Group-4/blob/main/architecture.png)
 
 
 ## Requirements
