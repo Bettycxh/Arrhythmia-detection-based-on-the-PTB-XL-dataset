@@ -1,4 +1,3 @@
-# DS4Healthcare-Group-4: 
 # Arrhythmia detection of 12-lead ECG using deep learning techniques based on the PTB-XL dataset
 
 ## Abstract
